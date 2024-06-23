@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom'
+
 import styles from './Header.module.css'
 import TECHS from '../../js/tech-data.js'
 
@@ -17,10 +19,10 @@ export default function Header() {
 					<ul>
 						{TECHS.map(tech => (
 							<li key={tech.name}>
-								<a>
+								<NavLink to={`/` + tech.url} className={({ isActive }) => (isActive ? styles.active : undefined)} end>
 									<i className={tech.icon}></i>
 									<span>{tech.name}</span>
-								</a>
+								</NavLink>
 							</li>
 						))}
 					</ul>
