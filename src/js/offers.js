@@ -16,7 +16,7 @@ const OFFERS = [
         position: 'Frontend Developer',
         publicDate: '2 weeks ago',
         typeOfContract: 'Part Time',
-        keyWords: ['HTML', 'CSS' , 'JavaScript', 'React'],
+        keyWords: ['HTML', 'CSS' , 'JavaScript', 'React', 'Sass'],
         place: 'Remote',
         lang: 'JavaScript'
     },

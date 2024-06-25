@@ -6,22 +6,7 @@ import Layout from './Components/Pages/Layout.jsx'
 import ErrorPage from './Components/Pages/ErrorPage.jsx'
 import Offers from './Components/Pages/Offers.jsx'
 
-const router = createBrowserRouter([
-	{
-		path: '/',
-		element: <Layout />,
-		errorElement: <ErrorPage />,
-		children: [
-			{ path: '/', element: <Offers text={'Global'} /> },
-			{ path: '/javascript', element: <Offers text={'JS'} /> },
-			{ path: '/java', element: <Offers text={'Java'} /> },
-			{ path: '/python', element: <Offers text={'Python'} /> },
-			{ path: '/cplusplus', element: <Offers text={'C++'} /> },
-		],
-	},
-])
-
-const newOFFERS = OFFERS.map(offer => {
+const globalOFFERS = OFFERS.map(offer => {
 	const isArr = Array.isArray(offer.lang)
 	if (isArr) {
 		return { ...offer, toFilter: [...offer.lang , ...offer.keyWords, offer.companyName] }
@@ -29,6 +14,21 @@ const newOFFERS = OFFERS.map(offer => {
 		return { ...offer, toFilter: [offer.lang, ...offer.keyWords, offer.companyName] }
 	}
 })
+
+const router = createBrowserRouter([
+	{
+		path: '/',
+		element: <Layout />,
+		errorElement: <ErrorPage />,
+		children: [
+			{ path: '/', element: <Offers offersArr={globalOFFERS} /> },
+			{ path: '/javascript', element: <Offers /> },
+			{ path: '/java', element: <Offers  /> },
+			{ path: '/python', element: <Offers  /> },
+			{ path: '/cplusplus', element: <Offers  /> },
+		],
+	},
+])
 
 export default function App() {
 	return <RouterProvider router={router} />
