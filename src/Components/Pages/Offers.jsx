@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 import styles from './Offers.module.css'
 
-let added = false;
+let added = false
 
 export default function Offers({ offersArr }) {
 	return (
@@ -10,7 +10,7 @@ export default function Offers({ offersArr }) {
 			{offersArr.map(offer => (
 				<a key={offer.id} className={styles['offers-container']}>
 					<img src={offer.img} alt={offer.altImg} />
-					<div>
+					<div className={styles['offer-data']}>
 						<div className={styles['company-info']}>
 							<p>{offer.companyName}</p>
 							<p>{offer.position}</p>
@@ -26,7 +26,15 @@ export default function Offers({ offersArr }) {
 							<p key={index}>{key}</p>
 						))}
 					</div>
-                    {added ? <i className='bx bxs-star'></i> : <i className='bx bx-star'></i> }
+					{added ? (
+						<button>
+							<i className='bx bxs-star'></i>{' '}
+						</button>
+					) : (
+						<button>
+							<i className='bx bx-star'></i>
+						</button>
+					)}
 				</a>
 			))}
 		</>
