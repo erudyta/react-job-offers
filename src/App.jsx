@@ -15,6 +15,38 @@ const globalOFFERS = OFFERS.map(offer => {
 	}
 })
 
+const jsOFFERS = globalOFFERS.filter(offer => {
+	if(Array.isArray(offer.lang)){
+		return offer.lang.includes('JavaScript')
+	}else{
+		return offer.lang === 'JavaScript'
+	}
+})
+
+const javaOFFERS = globalOFFERS.filter(offer => {
+	if(Array.isArray(offer.lang)){
+		return offer.lang.includes('Java')
+	}else{
+		return offer.lang === 'Java'
+	}
+})
+
+const pythonOFFERS = globalOFFERS.filter(offer => {
+	if(Array.isArray(offer.lang)){
+		return offer.lang.includes('Python')
+	}else{
+		return offer.lang === 'Python'
+	}
+})
+
+const cOFFERS = globalOFFERS.filter(offer => {
+	if(Array.isArray(offer.lang)){
+		return offer.lang.includes('C++')
+	}else{
+		return offer.lang === 'C++'
+	}
+})
+
 const router = createBrowserRouter([
 	{
 		path: '/',
@@ -22,10 +54,10 @@ const router = createBrowserRouter([
 		errorElement: <ErrorPage />,
 		children: [
 			{ path: '/', element: <Offers offersArr={globalOFFERS} /> },
-			{ path: '/javascript', element: <Offers /> },
-			{ path: '/java', element: <Offers  /> },
-			{ path: '/python', element: <Offers  /> },
-			{ path: '/cplusplus', element: <Offers  /> },
+			{ path: '/javascript', element: <Offers offersArr={jsOFFERS}/> },
+			{ path: '/java', element: <Offers  offersArr={javaOFFERS}/> },
+			{ path: '/python', element: <Offers  offersArr={pythonOFFERS}/> },
+			{ path: '/cplusplus', element: <Offers offersArr={cOFFERS} /> },
 		],
 	},
 ])

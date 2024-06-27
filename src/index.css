@@ -12,6 +12,10 @@ html {
 	color: rgb(32, 32, 32);
 }
 
+body{
+	background-color: rgb(252, 248, 244);
+}
+
 main{
 	padding: 3rem 1rem;
 	background-color: rgb(252, 248, 244);
