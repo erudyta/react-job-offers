@@ -22,7 +22,17 @@
 	flex-direction: row;
 	margin-right: 0.5rem;
 	border-radius: 6px;
+	background-color: #dfd0b8;
 	box-shadow: 0px 3px 0px 0px #b4925c;
+}
+
+button.keyword-counter{
+	margin: auto 0;
+	background-color: rgb(59, 59, 59);
+	border-radius: 50%;
+	border: none;
+	height: 26px;
+	width: 34px;
 }
 
 .search-bar i {
@@ -54,10 +64,11 @@
 .search-bar input:focus {
 	outline: none;
 }
+
 .keywords-container {
 	position: absolute;
 	top: 40px;
-	display: flex;
+	display: none;
 	flex-direction: row;
 	flex-wrap: wrap;
 	gap: 10px;
@@ -68,6 +79,10 @@
 	border-radius: 6px;
 	border: 2px solid #b4925c;
 	z-index: 2;
+}
+
+.keywords-container.active {
+	display: flex;
 }
 
 .keyword {

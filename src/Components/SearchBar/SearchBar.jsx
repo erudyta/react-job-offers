@@ -1,35 +1,87 @@
-import { useRef } from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import { useRef, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { keywordsAction } from '../../store/index.js'
 import styles from './SearchBar.module.css'
 
 export default function SearchBar() {
-    const dispatch = useDispatch();
+	const dispatch = useDispatch()
+	const keywordsArr = useSelector(state => state.keywordsArr)
+	const isActive = useSelector(state => state.isActive)
 
-    const keywords = useSelector(state => state.keywords)
-    console.log(keywords);
+	const inputRef = useRef()
+	const divKeywordContainerRef = useRef()
+	const searchBarRef = useRef()
 
-    const inputRef = useRef();
+	function handleAdd(e) {
+		const id = Math.random()
+		const keyword = inputRef.current.value.trim('')
+		console.log(keywordsArr)
+		if (
+			(keyword.length > 0 && !keywordsArr.some(e => e.keyword === keyword) && !e.key) ||
+			(keyword.length > 0 && !keywordsArr.some(e => e.keyword === keyword) && e.key === 'Enter')
+		) {
+			const newKeyword = {
+				id: id,
+				keyword: keyword,
+			}
+			dispatch(keywordsAction.addKeyword(newKeyword))
+			dispatch(keywordsAction.showKeywordWindow(true))
+			inputRef.current.value = ''
+		}
+		return
+	}
 
-    function addHandler(){
-        dispatch(keywordsAction.addKeyword(inputRef.current.value))
-    }
+	function handleDelete(id) {
+		dispatch(keywordsAction.deleteKeyword(id))
+	}
+
+	function handleShowAddedKeywords() {
+		if (keywordsArr.length > 0) dispatch(keywordsAction.showKeywordWindow(true))
+	}
+
+	useEffect(() => {
+		function handleClickOutside(event) {
+			if (
+				divKeywordContainerRef.current &&
+				!divKeywordContainerRef.current.contains(event.target) &&
+				searchBarRef.current &&
+				!searchBarRef.current.contains(event.target)
+			) {
+				dispatch(keywordsAction.showKeywordWindow(false))
+			}
+		}
+		document.addEventListener('mousedown', handleClickOutside)
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside)
+		}
+	}, [])
 
 	return (
 		<>
 			<div className={styles.search}>
-				<div className={styles['search-bar']}>
+				<div className={styles['search-bar']} ref={searchBarRef}>
 					<i className='bx bx-search-alt-2'></i>
-					<input type='text' maxLength='15' ref={inputRef}/>
-					<div className={styles['keywords-container']}>
-						<div className={styles['keyword']}>
-							<p>asfasfas</p>
-							<button>X</button>
+					{keywordsArr.length > 0 && (
+						<button className={styles['keyword-counter']} onClick={handleShowAddedKeywords}>
+							{keywordsArr.length}
+						</button>
+					)}
+					<input type='text' maxLength='15' ref={inputRef} onFocus={handleShowAddedKeywords} onKeyDown={handleAdd} />
+					{keywordsArr.length > 0 && (
+						<div
+							className={` ${styles['keywords-container']} ${isActive ? styles['active'] : ''}`}
+							ref={divKeywordContainerRef}>
+							{keywordsArr.map((keyword, index) => (
+								<div key={index} className={styles['keyword']}>
+									<p>{keyword.keyword}</p>
+									<button onClick={() => handleDelete(keyword.id)}>X</button>
+								</div>
+							))}
 						</div>
-					</div>
+					)}
 				</div>
-				<button onClick={addHandler}>add filter</button>
+				<button onClick={handleAdd}>add filter</button>
 			</div>
 		</>
 	)

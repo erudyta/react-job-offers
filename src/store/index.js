@@ -2,13 +2,16 @@ import { createSlice, configureStore } from '@reduxjs/toolkit'
 
 const keywordsSlice = createSlice({
 	name: 'keywords',
-	initialState: { keywords: [] },
+	initialState: { keywordsArr: [], isActive: false },
 	reducers: {
 		addKeyword(state, action) {
-			return { keywords: [action.payload, ...state.keywords] }
+			return { ...state, keywordsArr: [action.payload, ...state.keywordsArr] }
 		},
 		deleteKeyword(state, action) {
-			return
+			return { ...state, keywordsArr: state.keywordsArr.filter(keyword => keyword.id !== action.payload) }
+		},
+		showKeywordWindow(state, action) {
+			return { ...state, isActive: action.payload }
 		},
 	},
 })
