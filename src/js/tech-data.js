@@ -1,6 +1,6 @@
 const TECHS = [
     {
-        name: 'Home',
+        name: 'All',
         url: '',
         icon: 'bx bx-globe'
     }

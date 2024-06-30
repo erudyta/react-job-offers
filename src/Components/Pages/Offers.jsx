@@ -1,10 +1,76 @@
 import { Link } from 'react-router-dom'
 
+import { useSelector } from 'react-redux'
+import OFFERS from '../../js/offers.js'
 import styles from './Offers.module.css'
 
 let added = false
 
-export default function Offers({ offersArr }) {
+export default function Offers({ data }) {
+	const keywords = useSelector(state => state.keywordsArr)
+
+	const globalOFFERS = OFFERS.map(offer => {
+		const isArr = Array.isArray(offer.lang)
+		if (isArr) {
+			return { ...offer, toFilter: [...offer.lang, ...offer.keywords, offer.companyName] }
+		} else {
+			return { ...offer, toFilter: [offer.lang, ...offer.keywords, offer.companyName] }
+		}
+	})
+
+	let offersArr
+	switch (data) {
+		case 'all':
+			offersArr = globalOFFERS
+			break
+		case 'javascript':
+			offersArr = globalOFFERS.filter(offer => {
+				if (Array.isArray(offer.lang)) {
+					return offer.lang.includes('JavaScript')
+				} else {
+					return offer.lang === 'JavaScript'
+				}
+			})
+			break
+		case 'java':
+			offersArr = globalOFFERS.filter(offer => {
+				if (Array.isArray(offer.lang)) {
+					return offer.lang.includes('Java')
+				} else {
+					return offer.lang === 'Java'
+				}
+			})
+			break
+		case 'python':
+			offersArr = globalOFFERS.filter(offer => {
+				if (Array.isArray(offer.lang)) {
+					return offer.lang.includes('Python')
+				} else {
+					return offer.lang === 'Python'
+				}
+			})
+		case 'cplusplus':
+			offersArr = globalOFFERS.filter(offer => {
+				if (Array.isArray(offer.lang)) {
+					return offer.lang.includes('C++')
+				} else {
+					return offer.lang === 'C++'
+				}
+			})
+	}
+
+	if (keywords.length > 0) {
+		offersArr = offersArr.filter(offer => {
+			for (const key of keywords) {
+				if (offer.keywords.includes(key.keyword)) {
+					return true
+				} else {
+					return false
+				}
+			}
+		})
+	}
+
 	return (
 		<>
 			{offersArr.map(offer => (
@@ -22,7 +88,7 @@ export default function Offers({ offersArr }) {
 						</div>
 					</div>
 					<div className={styles['offer-keywords']}>
-						{offer.keyWords.map((key, index) => (
+						{offer.keywords.map((key, index) => (
 							<p key={index}>{key}</p>
 						))}
 					</div>

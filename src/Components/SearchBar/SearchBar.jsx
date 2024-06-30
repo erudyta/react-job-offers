@@ -16,11 +16,7 @@ export default function SearchBar() {
 	function handleAdd(e) {
 		const id = Math.random()
 		const keyword = inputRef.current.value.trim('')
-		console.log(keywordsArr)
-		if (
-			(keyword.length > 0 && !keywordsArr.some(e => e.keyword === keyword) && !e.key) ||
-			(keyword.length > 0 && !keywordsArr.some(e => e.keyword === keyword) && e.key === 'Enter')
-		) {
+		if (keyword.length > 0 && !keywordsArr.some(e => e.keyword === keyword)) {
 			const newKeyword = {
 				id: id,
 				keyword: keyword,
@@ -67,7 +63,15 @@ export default function SearchBar() {
 							{keywordsArr.length}
 						</button>
 					)}
-					<input type='text' maxLength='15' ref={inputRef} onFocus={handleShowAddedKeywords} onKeyDown={handleAdd} />
+					<input
+						type='text'
+						maxLength='15'
+						ref={inputRef}
+						onFocus={handleShowAddedKeywords}
+						onKeyDown={e => {
+							if (e.key === 'Enter') handleAdd()
+						}}
+					/>
 					{keywordsArr.length > 0 && (
 						<div
 							className={` ${styles['keywords-container']} ${isActive ? styles['active'] : ''}`}

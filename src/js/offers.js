@@ -16,7 +16,7 @@ const OFFERS = [
         position: 'Frontend Developer',
         publicDate: '2 weeks ago',
         typeOfContract: 'Part Time',
-        keyWords: ['HTML', 'CSS' , 'JavaScript', 'React', 'Sass'],
+        keywords: ['HTML', 'CSS' , 'JavaScript', 'React', 'Sass'],
         place: 'Remote',
         lang: 'JavaScript'
     },
@@ -28,7 +28,7 @@ const OFFERS = [
         position: 'Junior Frontend Developer',
         publicDate: '5 days ago',
         typeOfContract: 'Full Time',
-        keyWords: ['Junior', 'Angular' , 'TypeScript'],
+        keywords: ['Junior', 'Angular' , 'TypeScript'],
         place: 'Seoul',
         lang: ['JavaScript', 'TypeScript' ]
     },
@@ -40,7 +40,7 @@ const OFFERS = [
         position: 'Backend Developer',
         publicDate: '2 days ago',
         typeOfContract: 'Full Time',
-        keyWords: ['Hibernate', 'Java', 'Spring Boot'],
+        keywords: ['Hibernate', 'Java', 'Spring Boot'],
         place: 'Wrocław',
         lang: 'Java'
     },
@@ -52,7 +52,7 @@ const OFFERS = [
         position: 'C++ Developer',
         publicDate: '4 days ago',
         typeOfContract: 'Full Time',
-        keyWords: ['C++', 'Jira' , 'Git'],
+        keywords: ['C++', 'Jira' , 'Git'],
         place: 'Poland',
         lang: 'C++'
     },
@@ -64,7 +64,7 @@ const OFFERS = [
         position: 'Java Engineer',
         publicDate: '1 week ago',
         typeOfContract: 'Full Time',
-        keyWords: ['Java', 'Gradle' , 'Maven'],
+        keywords: ['Java', 'Gradle' , 'Maven'],
         place: 'China',
         lang: 'Java'
     },
@@ -76,7 +76,7 @@ const OFFERS = [
         position: 'Software Engineer',
         publicDate: '3 days ago',
         typeOfContract: 'Full Time',
-        keyWords: ['Python', 'SQL' , 'Git'],
+        keywords: ['Python', 'SQL' , 'Git'],
         place: 'Remote',
         lang: 'Python'
     },
@@ -88,7 +88,7 @@ const OFFERS = [
         position: 'React Developer',
         publicDate: '7 days ago',
         typeOfContract: 'Full Time',
-        keyWords: ['JavaScript', 'React' , 'GitHub'],
+        keywords: ['JavaScript', 'React' , 'GitHub'],
         place: 'Warszawa',
         lang: 'JavaScript'
     },
@@ -100,7 +100,7 @@ const OFFERS = [
         position: 'Senior Full Stack Developer',
         publicDate: '3 weeks ago',
         typeOfContract: 'Part Time',
-        keyWords: ['Python', 'DevOps' , 'SQL'],
+        keywords: ['Python', 'DevOps' , 'SQL'],
         place: 'Remote',
         lang: 'Python'
     }
