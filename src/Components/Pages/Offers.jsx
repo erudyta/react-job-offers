@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { keywordsAction } from '../../store/index.js'
 import OFFERS from '../../js/offers.js'
 import styles from './Offers.module.css'
 
@@ -9,12 +11,20 @@ let added = false
 export default function Offers({ data }) {
 	const keywords = useSelector(state => state.keywordsArr)
 
+	const dispatch = useDispatch()
+
 	const globalOFFERS = OFFERS.map(offer => {
 		const isArr = Array.isArray(offer.lang)
 		if (isArr) {
-			return { ...offer, toFilter: [...offer.lang, ...offer.keywords, offer.companyName] }
+			let arr = { ...offer, toFilter: [...offer.lang, ...offer.keywords, offer.companyName] }
+			const lowerArr = arr.toFilter.map(k => k.toLowerCase())
+			arr = { ...arr, toFilter: lowerArr }
+			return arr
 		} else {
-			return { ...offer, toFilter: [offer.lang, ...offer.keywords, offer.companyName] }
+			let arr = { ...offer, toFilter: [offer.lang, ...offer.keywords, offer.companyName] }
+			const lowerArr = arr.toFilter.map(k => k.toLowerCase())
+			arr = { ...arr, toFilter: lowerArr }
+			return arr
 		}
 	})
 
@@ -59,37 +69,79 @@ export default function Offers({ data }) {
 			})
 	}
 
+	let arrOfSelectedKeywords = []
+	for (const k of keywords) {
+		arrOfSelectedKeywords.push(k.keyword.toLowerCase())
+	}
+
+	// if (keywords.length > 0) {
+	// 	offersArr = offersArr.filter(offer => {
+	// 		for (const key of keywords) {
+	// 			if (offer.toFilter.includes(key.keyword.toLowerCase())) {
+	// 				return true
+	// 			} else {
+	// 				return false
+	// 			}
+	// 		}
+	// 	})
+	// }
+
 	if (keywords.length > 0) {
-		offersArr = offersArr.filter(offer => {
-			for (const key of keywords) {
-				if (offer.keywords.includes(key.keyword)) {
+		offersArr = offersArr.filter(o =>
+			o.toFilter.some(k => {
+				if (arrOfSelectedKeywords.includes(k.toLocaleLowerCase())) {
 					return true
-				} else {
-					return false
 				}
+			})
+		)
+	}
+
+	function handleAdd(key) {
+		let isExist = false
+
+		for (const k of keywords) {
+			if (k.keyword.toLowerCase() === key.toLowerCase()) {
+				isExist = true
+				dispatch(keywordsAction.deleteKeyword(k.id))
+				break
 			}
-		})
+		}
+		if (!isExist) {
+			const randomId = Math.random()
+			const newKeyword = {
+				id: randomId,
+				keyword: key,
+			}
+			dispatch(keywordsAction.addKeyword(newKeyword))
+		}
 	}
 
 	return (
 		<>
 			{offersArr.map(offer => (
-				<a key={offer.id} className={styles['offers-container']}>
-					<img src={offer.img} alt={offer.altImg} />
-					<div className={styles['offer-data']}>
-						<div className={styles['company-info']}>
-							<p>{offer.companyName}</p>
-							<p>{offer.position}</p>
+				<div key={offer.id} className={styles['offers-container']}>
+					<Link to={`/offer/` + offer.id}>
+						<img src={offer.img} alt={offer.altImg} />
+						<div className={styles['offer-data']}>
+							<div className={styles['company-info']}>
+								<p>{offer.companyName}</p>
+								<p>{offer.position}</p>
+							</div>
+							<div className={styles['offer-info']}>
+								<span>{offer.publicDate}</span>
+								<span>{offer.typeOfContract}</span>
+								<span>{offer.place}</span>
+							</div>
 						</div>
-						<div className={styles['offer-info']}>
-							<span>{offer.publicDate}</span>
-							<span>{offer.typeOfContract}</span>
-							<span>{offer.place}</span>
-						</div>
-					</div>
+					</Link>
 					<div className={styles['offer-keywords']}>
 						{offer.keywords.map((key, index) => (
-							<p key={index}>{key}</p>
+							<button
+								onClick={() => handleAdd(key)}
+								key={index}
+								className={arrOfSelectedKeywords.includes(key.toLowerCase()) ? styles['active'] : ''}>
+								{key}
+							</button>
 						))}
 					</div>
 					{added ? (
@@ -101,7 +153,7 @@ export default function Offers({ data }) {
 							<i className='bx bx-star'></i>
 						</button>
 					)}
-				</a>
+				</div>
 			))}
 		</>
 	)
