@@ -18,12 +18,14 @@ export default function Offers({ data }) {
 		if (isArr) {
 			let arr = { ...offer, toFilter: [...offer.lang, ...offer.keywords, offer.companyName] }
 			const lowerArr = arr.toFilter.map(k => k.toLowerCase())
-			arr = { ...arr, toFilter: lowerArr }
+			const uniqueArr = [... new Set(lowerArr)]
+			arr = { ...arr, toFilter: uniqueArr }
 			return arr
 		} else {
 			let arr = { ...offer, toFilter: [offer.lang, ...offer.keywords, offer.companyName] }
 			const lowerArr = arr.toFilter.map(k => k.toLowerCase())
-			arr = { ...arr, toFilter: lowerArr }
+			const uniqueArr = [... new Set(lowerArr)]
+			arr = { ...arr, toFilter: uniqueArr }
 			return arr
 		}
 	})
@@ -87,12 +89,16 @@ export default function Offers({ data }) {
 	// }
 
 	if (keywords.length > 0) {
-		offersArr = offersArr.filter(o =>
-			o.toFilter.some(k => {
-				if (arrOfSelectedKeywords.includes(k.toLocaleLowerCase())) {
-					return true
-				}
-			})
+		offersArr = offersArr.filter(o => {
+			let newArr = o.toFilter.filter(k => arrOfSelectedKeywords.includes(k.toLowerCase()))
+			console.log(newArr);
+			if(newArr.length >= keywords.length){
+				return true
+			}else{
+				return false
+			}
+		}
+			
 		)
 	}
 
