@@ -1,6 +1,7 @@
 .header {
-	padding-top: 2rem;
-	padding-bottom: 2rem;
+	width: 100%;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
 	background-color: rgb(59, 59, 59);
 	color: rgb(240, 240, 240);
 }
@@ -11,6 +12,7 @@
 	padding: 0 1rem;
 	gap: 1.5rem;
 	margin: 0 auto;
+	max-width: 382px;
 }
 
 .nav {
@@ -50,6 +52,73 @@
 .nav a:hover > i,
 .nav a.active > i {
 	background-color: #dfd0b8;
+}
+.fav{
+	position: relative;
+	align-self: flex-end;
+	height: max-content;
+	width: max-content;
+}
+
+.fav button{
+	width: max-content;
+	padding: 0.3rem;
+	font-size: 1.5rem;
+	background-color: rgb(97, 97, 97);
+	color: #e2ded3;
+	border-radius: 50%;
+	border: none;
+	transition: background-color 0.4s;
+	cursor: pointer;
+}
+
+.fav button i{
+	display: block;
+}
+
+.fav button span{
+	position: absolute;
+	top:-5px;
+	right: -4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 0.8rem;
+	height: 16px;
+	width: 17px;
+	border-radius: 50%;
+	background-color: red;
+}
+
+.tooltip{
+	position: absolute;
+	top: 4px;
+	right: 40px;
+	font-size: 0.8rem;
+	width: max-content;
+	background-color: white;
+	border-radius: 5px;
+	padding: 0.4rem;
+	color: black;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 1s;
+}
+
+.tooltip::after{
+	content: '';
+	position: absolute;
+	width: 7px;
+    height: 7px;
+    top: 11px;
+    right: -4px;
+	background-color: rgb(255, 255, 255);
+	transform: rotate(45deg);
+}
+
+.fav:hover .tooltip{
+	visibility: visible;
+	opacity: 1;
 }
 
 @media(min-width: 768px){

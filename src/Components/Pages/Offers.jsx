@@ -1,30 +1,26 @@
-import { Link } from 'react-router-dom'
+import { useRef } from 'react'
+import { useSelector } from 'react-redux'
 
-import { useSelector, useDispatch } from 'react-redux'
-
-import { keywordsAction } from '../../store/index.js'
+import Offer from '../Offer/Offer.jsx'
+import Modal from '../Modal/Modal.jsx'
 import OFFERS from '../../js/offers.js'
-import styles from './Offers.module.css'
-
-let added = false
 
 export default function Offers({ data }) {
+	const modal = useRef()
 	const keywords = useSelector(state => state.keywordsArr)
-
-	const dispatch = useDispatch()
 
 	const globalOFFERS = OFFERS.map(offer => {
 		const isArr = Array.isArray(offer.lang)
 		if (isArr) {
 			let arr = { ...offer, toFilter: [...offer.lang, ...offer.keywords, offer.companyName] }
 			const lowerArr = arr.toFilter.map(k => k.toLowerCase())
-			const uniqueArr = [... new Set(lowerArr)]
+			const uniqueArr = [...new Set(lowerArr)]
 			arr = { ...arr, toFilter: uniqueArr }
 			return arr
 		} else {
 			let arr = { ...offer, toFilter: [offer.lang, ...offer.keywords, offer.companyName] }
 			const lowerArr = arr.toFilter.map(k => k.toLowerCase())
-			const uniqueArr = [... new Set(lowerArr)]
+			const uniqueArr = [...new Set(lowerArr)]
 			arr = { ...arr, toFilter: uniqueArr }
 			return arr
 		}
@@ -61,6 +57,7 @@ export default function Offers({ data }) {
 					return offer.lang === 'Python'
 				}
 			})
+			break
 		case 'cplusplus':
 			offersArr = globalOFFERS.filter(offer => {
 				if (Array.isArray(offer.lang)) {
@@ -69,6 +66,7 @@ export default function Offers({ data }) {
 					return offer.lang === 'C++'
 				}
 			})
+			break
 	}
 
 	let arrOfSelectedKeywords = []
@@ -76,90 +74,34 @@ export default function Offers({ data }) {
 		arrOfSelectedKeywords.push(k.keyword.toLowerCase())
 	}
 
-	// if (keywords.length > 0) {
-	// 	offersArr = offersArr.filter(offer => {
-	// 		for (const key of keywords) {
-	// 			if (offer.toFilter.includes(key.keyword.toLowerCase())) {
-	// 				return true
-	// 			} else {
-	// 				return false
-	// 			}
-	// 		}
-	// 	})
-	// }
-
 	if (keywords.length > 0) {
 		offersArr = offersArr.filter(o => {
 			let newArr = o.toFilter.filter(k => arrOfSelectedKeywords.includes(k.toLowerCase()))
-			console.log(newArr);
-			if(newArr.length >= keywords.length){
+			if (newArr.length >= keywords.length) {
 				return true
-			}else{
+			} else {
 				return false
 			}
-		}
-			
-		)
-	}
-
-	function handleAdd(key) {
-		let isExist = false
-
-		for (const k of keywords) {
-			if (k.keyword.toLowerCase() === key.toLowerCase()) {
-				isExist = true
-				dispatch(keywordsAction.deleteKeyword(k.id))
-				break
-			}
-		}
-		if (!isExist) {
-			const randomId = Math.random()
-			const newKeyword = {
-				id: randomId,
-				keyword: key,
-			}
-			dispatch(keywordsAction.addKeyword(newKeyword))
-		}
+		})
 	}
 
 	return (
 		<>
+			<Modal ref={modal} />
 			{offersArr.map(offer => (
-				<div key={offer.id} className={styles['offers-container']}>
-					<Link to={`/offer/` + offer.id}>
-						<img src={offer.img} alt={offer.altImg} />
-						<div className={styles['offer-data']}>
-							<div className={styles['company-info']}>
-								<p>{offer.companyName}</p>
-								<p>{offer.position}</p>
-							</div>
-							<div className={styles['offer-info']}>
-								<span>{offer.publicDate}</span>
-								<span>{offer.typeOfContract}</span>
-								<span>{offer.place}</span>
-							</div>
-						</div>
-					</Link>
-					<div className={styles['offer-keywords']}>
-						{offer.keywords.map((key, index) => (
-							<button
-								onClick={() => handleAdd(key)}
-								key={index}
-								className={arrOfSelectedKeywords.includes(key.toLowerCase()) ? styles['active'] : ''}>
-								{key}
-							</button>
-						))}
-					</div>
-					{added ? (
-						<button>
-							<i className='bx bxs-star'></i>{' '}
-						</button>
-					) : (
-						<button>
-							<i className='bx bx-star'></i>
-						</button>
-					)}
-				</div>
+				<Offer
+					key={offer.id}
+					id={offer.id}
+					imgSrc={offer.img}
+					imgAlt={offer.altImg}
+					companyName={offer.companyName}
+					position={offer.position}
+					date={offer.publicDate}
+					typeOfContract={offer.typeOfContract}
+					place={offer.place}
+					keywordsArr={offer.keywords}
+					selectedKeywordsArr={arrOfSelectedKeywords}
+				/>
 			))}
 		</>
 	)

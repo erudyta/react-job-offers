@@ -9,7 +9,14 @@ export default function Header() {
 	return (
 		<header className={styles.header}>
 			<div className={styles.container}>
-				<SearchBar/>
+				<div className={styles.fav}>
+					<button>
+						<i className='bx bxs-star'></i>
+						<span>1</span>
+					</button>
+					<span className={styles.tooltip}>Show Favourite Offers</span>
+				</div>
+				<SearchBar />
 				<nav className={styles.nav}>
 					<ul>
 						{TECHS.map(tech => (
