@@ -1,13 +1,10 @@
-import { useRef } from 'react'
 import { useSelector } from 'react-redux'
 
 import Offer from '../Offer/Offer.jsx'
-import Modal from '../Modal/Modal.jsx'
 import OFFERS from '../../js/offers.js'
 
 export default function Offers({ data }) {
-	const modal = useRef()
-	const keywords = useSelector(state => state.keywordsArr)
+	const keywords = useSelector(state => state.keywords.keywordsArr)
 
 	const globalOFFERS = OFFERS.map(offer => {
 		const isArr = Array.isArray(offer.lang)
@@ -87,7 +84,6 @@ export default function Offers({ data }) {
 
 	return (
 		<>
-			<Modal ref={modal} />
 			{offersArr.map(offer => (
 				<Offer
 					key={offer.id}

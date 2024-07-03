@@ -16,9 +16,23 @@ const keywordsSlice = createSlice({
 	},
 })
 
+const favOffersSlice = createSlice({
+	name: 'favOffers',
+	initialState: { favsArr: [] },
+	reducers: {
+		add(state, action) {
+			return { favsArr: [action.payload, ...state.favsArr] }
+		},
+		delete(state, action) {
+			return { favsArr: state.favsArr.filter(id => id !== action.payload) }
+		},
+	},
+})
+
 const store = configureStore({
-	reducer: keywordsSlice.reducer,
+	reducer: { keywords: keywordsSlice.reducer, favs: favOffersSlice.reducer },
 })
 
 export const keywordsAction = keywordsSlice.actions
+export const favsOffersAction = favOffersSlice.actions
 export default store

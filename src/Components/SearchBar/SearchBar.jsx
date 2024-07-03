@@ -6,8 +6,8 @@ import styles from './SearchBar.module.css'
 
 export default function SearchBar() {
 	const dispatch = useDispatch()
-	const keywordsArr = useSelector(state => state.keywordsArr)
-	const isActive = useSelector(state => state.isActive)
+	const keywordsArr = useSelector(state => state.keywords.keywordsArr)
+	const isActive = useSelector(state => state.keywords.isActive)
 
 	const inputRef = useRef()
 	const divKeywordContainerRef = useRef()

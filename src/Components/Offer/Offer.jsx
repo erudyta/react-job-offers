@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
-import { keywordsAction } from '../../store/index.js'
+import { keywordsAction, favsOffersAction } from '../../store/index.js'
 
 import styles from './Offer.module.css'
 let added
@@ -17,7 +17,8 @@ export default function Offer({
 	keywordsArr,
 	selectedKeywordsArr,
 }) {
-	const keywords = useSelector(state => state.keywordsArr)
+	const keywords = useSelector(state => state.keywords.keywordsArr)
+	const favs = useSelector(state => state.favs.favsArr)
 	const dispatch = useDispatch()
 
 	function handleAdd(key) {
@@ -40,6 +41,16 @@ export default function Offer({
 		}
 	}
 
+	function handleAddFav(offerId) {
+		dispatch(favsOffersAction.add(offerId))
+	}
+
+	function handleDeleteFav(offerId) {
+		console.log(favs)
+		console.log(offerId)
+		dispatch(favsOffersAction.delete(offerId))
+	}
+
 	return (
 		<div className={styles['offers-container']}>
 			<Link to={`/offer/` + id}>
@@ -56,22 +67,24 @@ export default function Offer({
 					</div>
 				</div>
 			</Link>
-			<div className={styles['offer-keywords']}>
-				{keywordsArr.map((key, index) => (
-					<button
-						onClick={() => handleAdd(key)}
-						key={index}
-						className={selectedKeywordsArr.includes(key.toLowerCase()) ? styles['active'] : ''}>
-						{key}
-					</button>
-				))}
-			</div>
-			{added ? (
-				<button>
+			{keywordsArr.length > 0 && (
+				<div className={styles['offer-keywords']}>
+					{keywordsArr.map((key, index) => (
+						<button
+							onClick={() => handleAdd(key)}
+							key={index}
+							className={selectedKeywordsArr.includes(key.toLowerCase()) ? styles['active'] : ''}>
+							{key}
+						</button>
+					))}
+				</div>
+			)}
+			{favs.includes(id) ? (
+				<button onClick={() => handleDeleteFav(id)}>
 					<i className='bx bxs-star'></i>
 				</button>
 			) : (
-				<button>
+				<button onClick={() => handleAddFav(id)}>
 					<i className='bx bx-star'></i>
 				</button>
 			)}
