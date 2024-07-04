@@ -1,10 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-import OFFERS from './js/offers.js'
-
 import Layout from './Components/Pages/Layout.jsx'
 import ErrorPage from './Components/Pages/ErrorPage.jsx'
 import Offers from './Components/Pages/Offers.jsx'
+import OfferDetail from './Components/Pages/OfferDetail.jsx'
 
 
 const router = createBrowserRouter([
@@ -18,6 +17,7 @@ const router = createBrowserRouter([
 			{ path: '/java', element: <Offers data='java'/> },
 			{ path: '/python', element: <Offers data ='python'/> },
 			{ path: '/cplusplus', element: <Offers data='cplusplus'/> },
+			{ path: '/offer/:offerId', element: <OfferDetail/> },
 		],
 	},
 ])

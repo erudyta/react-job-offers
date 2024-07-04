@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import { keywordsAction, favsOffersAction } from '../../store/index.js'
 
 import styles from './Offer.module.css'
-let added
 export default function Offer({
 	id,
 	imgSrc,

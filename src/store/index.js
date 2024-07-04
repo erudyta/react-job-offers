@@ -26,6 +26,9 @@ const favOffersSlice = createSlice({
 		delete(state, action) {
 			return { favsArr: state.favsArr.filter(id => id !== action.payload) }
 		},
+		deselectAll(){
+			return { favsArr: []}
+		}
 	},
 })
 

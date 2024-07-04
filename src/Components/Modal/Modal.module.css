@@ -1,27 +1,51 @@
-.dialog{
-    margin: auto;
-    padding: 1rem;
-    border-radius: 10px;
-    color: black;
-    background-color: rgb(252, 248, 244);
-    border: none;
+.dialog {
+	margin: auto;
+	padding: 2rem 1rem;
+	width: 90vw;
+	border-radius: 10px;
+	color: black;
+	background-color: rgb(252, 250, 249);
+	border: none;
 }
 
-.dialog::backdrop{
-    background-color: rgba(0, 0, 0, .7)
+.dialog h1{
+	text-align: center;
+	margin-bottom: 1rem;
 }
 
-.dialog button{
-    padding: 0.5rem;
-    color: black;
-    background-color: transparent;
-    border: none;
-    border-radius: 4px;
-    transition: background-color .4s;
+.dialog::backdrop {
+	background-color: rgba(0, 0, 0, 0.7);
 }
 
-.dialog button:hover{
-    padding: 0.5rem;
-    background-color: rgb(200, 200, 200);
-    border: none;
+.btns{
+	display: flex;
+	justify-content: space-between;
+}
+
+.btns button {
+	padding: 0.5rem;
+    font-size: 1.1rem;
+	color: black;
+	background-color: transparent;
+	border: none;
+	border-radius: 4px;
+	transition: background-color 0.4s;
+}
+
+.btns button:hover {
+	padding: 0.5rem;
+	background-color: rgb(200, 200, 200);
+	border: none;
+}
+
+@media (min-width: 568px) {
+	.dialog {
+		width: 512px;
+	}
+}
+
+@media (min-width: 768px) {
+	.dialog {
+		width: 620px;
+	}
 }
