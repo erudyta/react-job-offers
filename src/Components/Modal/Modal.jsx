@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { forwardRef, useImperativeHandle, useRef } from 'react'
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 import { favsOffersAction } from '../../store/index.js'
 import { createPortal } from 'react-dom'
 
@@ -7,21 +7,29 @@ import Offer from '../Offer/Offer'
 
 import OFFERS from '../../js/offers'
 import styles from './Modal.module.css'
+
 const Modal = forwardRef(function Modal({}, ref) {
 	const favs = useSelector(state => state.favs.favsArr)
 	const dialog = useRef()
 	const dispatch = useDispatch()
 
+	const [isMondalOpened, setIsModalOpened] = useState(false)
 	useImperativeHandle(ref, () => {
 		return {
 			open() {
+				setIsModalOpened(true)
 				dialog.current.showModal()
+			},
+			close() {
+				setIsModalOpened(false)
+				dialog.current.close()
 			},
 		}
 	})
 	const favsOffers = OFFERS.filter(o => favs.includes(o.id))
 
 	function handleCLose() {
+		setIsModalOpened(false)
 		dialog.current.close()
 	}
 
@@ -45,6 +53,8 @@ const Modal = forwardRef(function Modal({}, ref) {
 					place={offer.place}
 					keywordsArr={[]}
 					selectedKeywordsArr={[]}
+					closeModal ={handleCLose}
+					isModalOpened={isMondalOpened}
 				/>
 			))}
 			<div className={styles.btns}>

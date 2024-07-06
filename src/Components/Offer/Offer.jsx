@@ -15,6 +15,8 @@ export default function Offer({
 	place,
 	keywordsArr,
 	selectedKeywordsArr,
+	closeModal,
+	isModalOpened,
 }) {
 	const keywords = useSelector(state => state.keywords.keywordsArr)
 	const favs = useSelector(state => state.favs.favsArr)
@@ -45,14 +47,18 @@ export default function Offer({
 	}
 
 	function handleDeleteFav(offerId) {
-		console.log(favs)
-		console.log(offerId)
 		dispatch(favsOffersAction.delete(offerId))
+	}
+
+	function handleCloseModal() {
+		if (isModalOpened) {
+			closeModal()
+		}
 	}
 
 	return (
 		<div className={styles['offers-container']}>
-			<Link to={`/offer/` + id}>
+			<Link to={`/offer/` + id} onClick={handleCloseModal}>
 				<img src={imgSrc} alt={imgAlt} />
 				<div className={styles['offer-data']}>
 					<div className={styles['company-info']}>

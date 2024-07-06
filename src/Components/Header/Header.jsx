@@ -1,22 +1,20 @@
 import { NavLink } from 'react-router-dom'
-import { useRef } from 'react'
 import SearchBar from '../SearchBar/SearchBar.jsx'
 
 import { useSelector } from 'react-redux'
-import Modal from '../Modal/Modal.jsx'
 import TECHS from '../../js/tech-data.js'
 
 import styles from './Header.module.css'
-export default function Header() {
-	const modal = useRef()
+
+export default function Header( {modalRef }) {
 	const favs = useSelector(state => state.favs.favsArr)
 
 	function handleClick() {
-		modal.current.open()
+		modalRef.current.open()
 	}
+	
 	return (
 		<>
-			<Modal ref={modal} />
 			<header className={styles.header}>
 				<div className={styles.container}>
 					<div className={styles.fav}>

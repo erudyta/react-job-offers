@@ -18,7 +18,8 @@ const OFFERS = [
         typeOfContract: 'Part Time',
         keywords: ['HTML', 'CSS' , 'JavaScript', 'React', 'Sass'],
         place: 'Remote',
-        lang: 'JavaScript'
+        lang: 'JavaScript',
+        exp: 'Mid'
     },
     {
         id: 'offer-2',
@@ -30,7 +31,8 @@ const OFFERS = [
         typeOfContract: 'Full Time',
         keywords: ['Junior', 'Angular' , 'TypeScript'],
         place: 'Seoul',
-        lang: ['JavaScript', 'TypeScript' ]
+        lang: ['JavaScript', 'TypeScript' ],
+        exp: 'Junior'
     },
     {
         id: 'offer-3',
@@ -42,7 +44,8 @@ const OFFERS = [
         typeOfContract: 'Full Time',
         keywords: ['Hibernate', 'Java', 'Spring Boot'],
         place: 'Wrocław',
-        lang: 'Java'
+        lang: 'Java',
+        exp: 'Mid'
     },
     {
         id: 'offer-4',
@@ -54,7 +57,8 @@ const OFFERS = [
         typeOfContract: 'Full Time',
         keywords: ['C++', 'Jira' , 'Git'],
         place: 'Poland',
-        lang: 'C++'
+        lang: 'C++',
+        exp: 'Junior'
     },
     {
         id: 'offer-5',
@@ -66,7 +70,8 @@ const OFFERS = [
         typeOfContract: 'Full Time',
         keywords: ['Java', 'Gradle' , 'Maven'],
         place: 'China',
-        lang: 'Java'
+        lang: 'Java',
+        exp: 'Mid'
     },
     {
         id: 'offer-6',
@@ -78,7 +83,8 @@ const OFFERS = [
         typeOfContract: 'Full Time',
         keywords: ['Python', 'SQL' , 'Git'],
         place: 'Remote',
-        lang: 'Python'
+        lang: 'Python',
+        exp: 'Mid'
     },
     {
         id: 'offer-7',
@@ -90,7 +96,8 @@ const OFFERS = [
         typeOfContract: 'Full Time',
         keywords: ['JavaScript', 'React' , 'GitHub'],
         place: 'Warszawa',
-        lang: 'JavaScript'
+        lang: 'JavaScript',
+        exp: 'Senior'
     },
     {
         id: 'offer-8',
@@ -102,7 +109,8 @@ const OFFERS = [
         typeOfContract: 'Part Time',
         keywords: ['Python', 'DevOps' , 'SQL'],
         place: 'Remote',
-        lang: 'Python'
+        lang: 'Python',
+        exp: 'Senior'
     }
 ]
 
