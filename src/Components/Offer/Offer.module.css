@@ -29,15 +29,17 @@
 	border-radius: 50%;
 }
 
-.company-info p:nth-child(1) {
+.company-info h2 {
+	font-size: 1rem;
 	margin-bottom: 0.5rem;
 	color: #b4925c;
 	font-weight: bold;
 }
 
-.company-info p:nth-child(2) {
+.offer-data .company-info h1 {
+	text-align: left;
 	margin-bottom: 0.5rem;
-	font-size: 1.1rem;
+	font-size: 1.2rem;
 	font-weight: bold;
 }
 
@@ -128,15 +130,18 @@
 	}
 
 	.offer-data {
-		min-width: 250px;
+		min-width: 280px;
 	}
 
-	.company-info p:nth-child(1) {
+	.company-info h2 {
+		font-size: 1.1rem;
 		margin-top: 1rem;
 		margin-bottom: 0.8rem;
+		color: #b4925c;
 	}
 
-	.company-info p:nth-child(2) {
+	.company-info h1 {
+		font-size: 1.3rem;
 		margin-bottom: 0.8rem;
 	}
 
@@ -156,5 +161,9 @@
 	.offers-container {
 		margin: 0 auto;
 		margin-bottom: 3rem;
+	}
+
+	.offer-data {
+		min-width: 320px;
 	}
 }

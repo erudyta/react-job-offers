@@ -19,7 +19,9 @@ const OFFERS = [
         keywords: ['HTML', 'CSS' , 'JavaScript', 'React', 'Sass'],
         place: 'Remote',
         lang: 'JavaScript',
-        exp: 'Mid'
+        exp: 'Mid',
+        aboutCompany: 'We are a company with many years of experience in modifying and creating websites from scratch. We are characterized by high quality and speed of implementation of projects entrusted to us.',
+        req: ['Bachelor’s degree in computer science or equivalent education required', 'At least 2 years of active experience as Frontend developer', 'Experience with at React test frameworks']
     },
     {
         id: 'offer-2',
@@ -32,7 +34,9 @@ const OFFERS = [
         keywords: ['Junior', 'Angular' , 'TypeScript'],
         place: 'Seoul',
         lang: ['JavaScript', 'TypeScript' ],
-        exp: 'Junior'
+        exp: 'Junior',
+        aboutCompany: 'Epicify is a place where experience intertwines with youthful creativity. We carry out many projects for companies from all over the world. We regularly launch new projects founded on long-term, amicable relationships with our associates.',
+        req: ['React Proficiency: Solid experience', 'Bachelor’s degree in computer science', 'Understand basic JS concepts']
     },
     {
         id: 'offer-3',
@@ -45,7 +49,9 @@ const OFFERS = [
         keywords: ['Hibernate', 'Java', 'Spring Boot'],
         place: 'Wrocław',
         lang: 'Java',
-        exp: 'Mid'
+        exp: 'Mid',
+        aboutCompany: 'We are an international company providing engineering services in the field of broadly understood IT - from creating websites to mobile applications.We have been operating continuously since 1996.',
+        req: ['Around 3+ years of experience' ,'Experience in SQL and NoSql', 'Fluent in English']
     },
     {
         id: 'offer-4',
@@ -58,7 +64,9 @@ const OFFERS = [
         keywords: ['C++', 'Jira' , 'Git'],
         place: 'Poland',
         lang: 'C++',
-        exp: 'Junior'
+        exp: 'Junior',
+        aboutCompany: 'We are a leader in creating and developing MMORPG games. Our various online productions are played by many millions of players around the world. We are a close-knit team of people who love playing games as much as we do.',
+        req: ['Coding experience with C++ or Python.', 'Bachelor’s degree in computer science or equivalent education required', '1 year of experience with data structures and algorithms.']
     },
     {
         id: 'offer-5',
@@ -71,7 +79,10 @@ const OFFERS = [
         keywords: ['Java', 'Gradle' , 'Maven'],
         place: 'China',
         lang: 'Java',
-        exp: 'Mid'
+        exp: 'Mid',
+        aboutCompany: 'We create business anew. Thanks to our solutions, many companies around the world have improved their work efficiency and made work easier for their employees. Our mission is to support the business growth of our clients.',
+        req: ['At least 3 years of experience in software development with Java', 'Excellent analytical and problem-solving skills', 'Very good command of English language,']
+        
     },
     {
         id: 'offer-6',
@@ -84,7 +95,10 @@ const OFFERS = [
         keywords: ['Python', 'SQL' , 'Git'],
         place: 'Remote',
         lang: 'Python',
-        exp: 'Mid'
+        exp: 'Mid',
+        aboutCompany: 'Powerhouse is a global company that provides state-of-the-art field of computer software development. Established in 2002, the company employs over 1,000+ specialists from around the world.',
+        req: ['Around 3+ years of experience.', 'Fluent in English', 'Exprience in Machine Learning']
+
     },
     {
         id: 'offer-7',
@@ -97,7 +111,9 @@ const OFFERS = [
         keywords: ['JavaScript', 'React' , 'GitHub'],
         place: 'Warszawa',
         lang: 'JavaScript',
-        exp: 'Senior'
+        exp: 'Senior',
+        aboutCompany: 'We are Strategy House– an international IT software engineering company based in Warsaw, Poland. We create profitable technology companies from scratch.',
+        req: ['Bachelor’s degree in computer science', 'Excellent analytical and problem-solving skills']
     },
     {
         id: 'offer-8',
@@ -110,7 +126,9 @@ const OFFERS = [
         keywords: ['Python', 'DevOps' , 'SQL'],
         place: 'Remote',
         lang: 'Python',
-        exp: 'Senior'
+        exp: 'Senior',
+        aboutCompany: 'We are a company specializing in several areas such as machine learning, big data and IT consulting.',
+        req: ['Master’s degree in computer science', 'Exprience in Machine Learning', 'Fluent in English']
     }
 ]
 

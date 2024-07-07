@@ -62,8 +62,8 @@ export default function Offer({
 				<img src={imgSrc} alt={imgAlt} />
 				<div className={styles['offer-data']}>
 					<div className={styles['company-info']}>
-						<p>{companyName}</p>
-						<p>{position}</p>
+						<h2>{companyName}</h2>
+						<h1>{position}</h1>
 					</div>
 					<div className={styles['offer-info']}>
 						<span>{date}</span>
