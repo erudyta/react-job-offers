@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import Offer from '../Offer/Offer.jsx'
 import OFFERS from '../../js/offers.js'
 
+import styles from './Offers.module.css'
 export default function Offers({ data }) {
 	const keywords = useSelector(state => state.keywords.keywordsArr)
 
@@ -84,7 +85,8 @@ export default function Offers({ data }) {
 
 	return (
 		<>
-			{offersArr.map(offer => (
+		{offersArr.length === 0 && <h1 className={styles['no-offers']}>No offers matching the given criteria were found.</h1>}
+			{offersArr.length > 0 && offersArr.map(offer => (
 				<Offer
 					key={offer.id}
 					id={offer.id}
