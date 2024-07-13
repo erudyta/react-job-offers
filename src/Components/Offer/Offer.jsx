@@ -85,11 +85,11 @@ export default function Offer({
 				</div>
 			)}
 			{favs.includes(id) ? (
-				<button onClick={() => handleDeleteFav(id)}>
+				<button data-testid="filled-star" onClick={() => handleDeleteFav(id)}>
 					<i className='bx bxs-star'></i>
 				</button>
 			) : (
-				<button onClick={() => handleAddFav(id)}>
+				<button data-testid="empty-star" onClick={() => handleAddFav(id)}>
 					<i className='bx bx-star'></i>
 				</button>
 			)}

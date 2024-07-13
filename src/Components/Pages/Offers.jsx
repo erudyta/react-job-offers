@@ -65,6 +65,9 @@ export default function Offers({ data }) {
 				}
 			})
 			break
+		default:
+			offersArr = []
+			break
 	}
 
 	let arrOfSelectedKeywords = []
@@ -85,22 +88,25 @@ export default function Offers({ data }) {
 
 	return (
 		<>
-		{offersArr.length === 0 && <h1 className={styles['no-offers']}>No offers matching the given criteria were found.</h1>}
-			{offersArr.length > 0 && offersArr.map(offer => (
-				<Offer
-					key={offer.id}
-					id={offer.id}
-					imgSrc={offer.img}
-					imgAlt={offer.altImg}
-					companyName={offer.companyName}
-					position={offer.position}
-					date={offer.publicDate}
-					typeOfContract={offer.typeOfContract}
-					place={offer.place}
-					keywordsArr={offer.keywords}
-					selectedKeywordsArr={arrOfSelectedKeywords}
-				/>
-			))}
+			{offersArr.length === 0 && (
+				<h1 className={styles['no-offers']}>No offers matching the given criteria were found.</h1>
+			)}
+			{offersArr.length > 0 &&
+				offersArr.map(offer => (
+					<Offer
+						key={offer.id}
+						id={offer.id}
+						imgSrc={offer.img}
+						imgAlt={offer.altImg}
+						companyName={offer.companyName}
+						position={offer.position}
+						date={offer.publicDate}
+						typeOfContract={offer.typeOfContract}
+						place={offer.place}
+						keywordsArr={offer.keywords}
+						selectedKeywordsArr={arrOfSelectedKeywords}
+					/>
+				))}
 		</>
 	)
 }

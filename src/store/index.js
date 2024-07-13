@@ -1,4 +1,4 @@
-import { createSlice, configureStore } from '@reduxjs/toolkit'
+import { createSlice, configureStore, combineReducers } from '@reduxjs/toolkit'
 
 const keywordsSlice = createSlice({
 	name: 'keywords',
@@ -26,15 +26,24 @@ const favOffersSlice = createSlice({
 		delete(state, action) {
 			return { favsArr: state.favsArr.filter(id => id !== action.payload) }
 		},
-		deselectAll(){
-			return { favsArr: []}
-		}
+		deselectAll() {
+			return { favsArr: [] }
+		},
 	},
 })
 
 const store = configureStore({
 	reducer: { keywords: keywordsSlice.reducer, favs: favOffersSlice.reducer },
 })
+
+//Store for testing purpose (new store for every test)
+export const setupStore = preloadedState => {
+	return configureStore({
+		reducer: { keywords: keywordsSlice.reducer, favs: favOffersSlice.reducer },
+		preloadedState,
+	})
+}
+// ----------------------------------------------------------------------------------------------
 
 export const keywordsAction = keywordsSlice.actions
 export const favsOffersAction = favOffersSlice.actions
