@@ -101,4 +101,34 @@ describe('Offer component tests', () => {
 		const elementOutput = screen.getByTestId('empty-star')
 		expect(elementOutput).toBeInTheDocument()
 	})
+
+	test('not render keywords list when array is empty', () => {
+		render(
+			<Provider store={store}>
+				<MemoryRouter>
+					<Offer id='id1' keywordsArr={[]} />
+				</MemoryRouter>
+			</Provider>
+		)
+		// Act
+		//...
+		// Assert
+		const list = screen.queryByRole('list')
+		expect(list).toBeNull()
+	})
+
+	test('render keyword list when array is not empty', () => {
+		render(
+			<Provider store={store}>
+				<MemoryRouter>
+					<Offer id='id1' keywordsArr={['css']} selectedKeywordsArr={[]} />
+				</MemoryRouter>
+			</Provider>
+		)
+		// Act
+		//...
+		// Assert
+		const list = screen.getByRole('list')
+		expect(list).toBeInTheDocument()
+	})
 })

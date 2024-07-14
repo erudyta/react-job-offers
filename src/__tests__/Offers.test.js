@@ -3,7 +3,7 @@ import Offers from '../Components/Pages/Offers.jsx'
 import { Provider } from 'react-redux'
 import store from '../store/index.js'
 
-import {expect} from '@jest/globals';
+import { expect } from '@jest/globals'
 import { render, screen } from '@testing-library/react'
 
 describe('Offer component', () => {
@@ -11,7 +11,7 @@ describe('Offer component', () => {
 	test('render h1 if wrong data props were passed', () => {
 		render(
 			<Provider store={store}>
-					<Offers offer =''></Offers>
+				<Offers offer=''></Offers>
 			</Provider>
 		)
 		// Act
@@ -25,7 +25,7 @@ describe('Offer component', () => {
 		// Arrange
 		render(
 			<Provider store={store}>
-					<Offers offer ='javascript'></Offers>
+				<Offers offer='javascript'></Offers>
 			</Provider>
 		)
 		// Act

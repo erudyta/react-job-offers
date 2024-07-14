@@ -73,23 +73,24 @@ export default function Offer({
 				</div>
 			</Link>
 			{keywordsArr.length > 0 && (
-				<div className={styles['offer-keywords']}>
+				<ul className={styles['offer-keywords']}>
 					{keywordsArr.map((key, index) => (
-						<button
-							onClick={() => handleAdd(key)}
-							key={index}
-							className={selectedKeywordsArr.includes(key.toLowerCase()) ? styles['active'] : ''}>
-							{key}
-						</button>
+						<li key={index}>
+							<button
+								onClick={() => handleAdd(key)}
+								className={selectedKeywordsArr.includes(key.toLowerCase()) ? styles['active'] : ''}>
+								{key}
+							</button>
+						</li>
 					))}
-				</div>
+				</ul>
 			)}
 			{favs.includes(id) ? (
-				<button data-testid="filled-star" onClick={() => handleDeleteFav(id)}>
+				<button data-testid='filled-star' onClick={() => handleDeleteFav(id)}>
 					<i className='bx bxs-star'></i>
 				</button>
 			) : (
-				<button data-testid="empty-star" onClick={() => handleAddFav(id)}>
+				<button data-testid='empty-star' onClick={() => handleAddFav(id)}>
 					<i className='bx bx-star'></i>
 				</button>
 			)}
