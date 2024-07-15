@@ -29,7 +29,7 @@ export default function Header( {modalRef }) {
 						<ul>
 							{TECHS.map(tech => (
 								<li key={tech.name}>
-									<NavLink to={`/` + tech.url} className={({ isActive }) => (isActive ? styles.active : undefined)} end>
+									<NavLink data-testid={tech.url} to={`/` + tech.url} className={({ isActive }) => (isActive ? styles.active : undefined)} end>
 										<i className={tech.icon}></i>
 										<span>{tech.name}</span>
 									</NavLink>
