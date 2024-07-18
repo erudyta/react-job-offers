@@ -27,7 +27,7 @@ describe('Offer component tests', () => {
 		//...
 		// Assert
 		const aElement = screen.getByRole('link')
-		expect(aElement).toHaveProperty('href', 'https://test.com/offer/1')
+		expect(aElement).toHaveProperty('href', 'https://test.com/react-job-offers/offer/1')
 	})
 
 	test('render keywords section when array have elements', () => {

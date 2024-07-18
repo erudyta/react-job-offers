@@ -44,11 +44,30 @@
 }
 
 .offer-info {
+	position: relative;
 	display: flex;
 	flex-direction: row;
 	gap: 1rem;
 	margin-bottom: 1.5rem;
 	font-size: 0.9rem;
+}
+
+.offer-info span::before{
+	content: '';
+	position: relative;
+	display: inline-block;
+	left: 110%;
+	top: -10%;
+	height: 4px;
+	width: 4px;
+	border-radius: 50%;
+	background-color: black;
+}
+
+.offer-info span:last-child::before{
+	content: '';
+	display: none;
+	
 }
 
 .offer-keywords {
@@ -146,6 +165,7 @@
 		margin-bottom: 0.8rem;
 	}
 
+	
 	.offer-keywords {
 		justify-content: flex-end;
 		align-items: center;

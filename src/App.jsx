@@ -8,16 +8,16 @@ import OfferDetail from './Components/Pages/OfferDetail.jsx'
 
 const router = createBrowserRouter([
 	{
-		path: '/',
+		path: '/react-job-offers',
 		element: <Layout />,
 		errorElement: <ErrorPage />,
 		children: [
-			{ path: '/', element: <Offers data='all' />,  },
-			{ path: '/javascript', element: <Offers data='javascript'/>,  },
-			{ path: '/java', element: <Offers data='java'/> },
-			{ path: '/python', element: <Offers data ='python'/> },
-			{ path: '/cplusplus', element: <Offers data='cplusplus'/> },
-			{ path: '/offer/:offerId', element: <OfferDetail/> },
+			{ path: '/react-job-offers', element: <Offers data='all' />,  },
+			{ path: '/react-job-offers/javascript', element: <Offers data='javascript'/>,  },
+			{ path: '/react-job-offers/java', element: <Offers data='java'/> },
+			{ path: '/react-job-offers/python', element: <Offers data ='python'/> },
+			{ path: '/react-job-offers/cplusplus', element: <Offers data='cplusplus'/> },
+			{ path: '/react-job-offers/offer/:offerId', element: <OfferDetail/> }
 		],
 	},
 ])

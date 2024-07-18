@@ -58,7 +58,7 @@ export default function Offer({
 
 	return (
 		<div className={styles['offers-container']}>
-			<Link to={`/offer/` + id} onClick={handleCloseModal}>
+			<Link to={`/react-job-offers/offer/` + id} onClick={handleCloseModal}>
 				<img src={imgSrc} alt={imgAlt} />
 				<div className={styles['offer-data']}>
 					<div className={styles['company-info']}>
